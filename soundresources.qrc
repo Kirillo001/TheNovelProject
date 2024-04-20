@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/soundres">
+        <file>common/sound/music/fenazepam.mp3</file>
+    </qresource>
+</RCC>
