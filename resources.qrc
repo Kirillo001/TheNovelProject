@@ -8,5 +8,6 @@
     <qresource prefix="/">
         <file>common/iconweb/discord.png</file>
         <file>common/sound/music/fenazepam.mp3</file>
+        <file>common/sound/music/pashalko.mp3</file>
     </qresource>
 </RCC>

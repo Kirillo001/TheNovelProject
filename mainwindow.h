@@ -5,6 +5,8 @@
 
 #include <QMainWindow>
 #include <QStackedWidget>
+#include <QMediaPlayer>
+#include <QAudioOutput>
 
 class MainMenu;
 class GameSettings;
@@ -32,6 +34,7 @@ private:
     QStackedWidget *stackedWidget;
     MainMenu *mainMenu;
     GameSettings *settingsWidget;
+    QMediaPlayer *musicPlayer;
 };
 
 #endif // MAINWINDOW_H

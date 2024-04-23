@@ -13,12 +13,14 @@ SOURCES += \
     gamesettings.cpp \
     main.cpp \
     mainmenu.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    musicmanager.cpp
 
 HEADERS += \
     gamesettings.h \
     mainmenu.h \
-    mainwindow.h
+    mainwindow.h \
+    musicmanager.h
 
 FORMS += \
     gamesettings.ui \

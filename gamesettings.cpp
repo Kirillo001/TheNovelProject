@@ -2,6 +2,9 @@
 
 #include "gamesettings.h"
 #include "ui_gamesettings.h"
+#include "musicmanager.h"
+
+MusicManager musicMainMenu;
 
 GameSettings::GameSettings(QWidget *parent) :
     QWidget(parent),
@@ -57,4 +60,24 @@ void GameSettings::on_pushButton_3_clicked()
 {
     emit backToMainMenu();
 }
+
+
+void GameSettings::on_pushButton_4_clicked() //СНПМОДОСТ
+{
+    musicMainMenu.playMusic(1);
+}
+
+
+void GameSettings::on_pushButton_5_clicked() //ПАСХОАЛКО 1499
+{
+    musicMainMenu.playMusic(2);
+}
+
+
+void GameSettings::on_horizontalSlider_valueChanged(int value)
+{
+
+    musicMainMenu.setVolume(value);
+}
+
 

@@ -4,6 +4,7 @@
 #include "ui_mainwindow.h"
 #include "mainmenu.h"
 #include "gamesettings.h"
+#include "musicmanager.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -22,8 +23,8 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(mainMenu, &MainMenu::showSettings, this, &MainWindow::showSettingsWidget);
     connect(settingsWidget, &GameSettings::backToMainMenu, this, &MainWindow::showMainMenuWidget);
-
-
+    MusicManager musicManager;
+    musicManager.playMusic(1);
 }
 
 MainWindow::~MainWindow()
