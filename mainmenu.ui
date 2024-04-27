@@ -69,13 +69,15 @@
     <rect>
      <x>80</x>
      <y>120</y>
-     <width>731</width>
+     <width>771</width>
      <height>141</height>
     </rect>
    </property>
    <property name="font">
     <font>
      <pointsize>70</pointsize>
+     <bold>true</bold>
+     <kerning>true</kerning>
     </font>
    </property>
    <property name="text">
