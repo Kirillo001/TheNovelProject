@@ -10,22 +10,28 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    chapterselection.cpp \
     gamesettings.cpp \
     main.cpp \
     mainmenu.cpp \
     mainwindow.cpp \
-    musicmanager.cpp
+    musicmanager.cpp \
+    novellagame.cpp
 
 HEADERS += \
+    chapterselection.h \
     gamesettings.h \
     mainmenu.h \
     mainwindow.h \
-    musicmanager.h
+    musicmanager.h \
+    novellagame.h
 
 FORMS += \
+    chapterselection.ui \
     gamesettings.ui \
     mainmenu.ui \
-    mainwindow.ui
+    mainwindow.ui \
+    novellagame.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

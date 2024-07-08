@@ -1,5 +1,3 @@
-//mainwindow.h
-
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
@@ -10,6 +8,8 @@
 
 class MainMenu;
 class GameSettings;
+class ChapterSelection;
+class NovellaGame;
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -28,12 +28,16 @@ public:
 private slots:
     void showSettingsWidget();
     void showMainMenuWidget();
+    void showChapterSelectionWidget();
+    void showNovellaGameWidget(int chapter);
 
 private:
     Ui::MainWindow *ui;
     QStackedWidget *stackedWidget;
     MainMenu *mainMenu;
     GameSettings *settingsWidget;
+    ChapterSelection *chapterSelection;
+    NovellaGame *novellaGame;
     QMediaPlayer *musicPlayer;
 };
 

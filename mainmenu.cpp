@@ -1,8 +1,6 @@
-// mainmenu.cpp
-
 #include "mainmenu.h"
+#include "chapterselection.h"
 #include "ui_mainmenu.h"
-
 
 MainMenu::MainMenu(QWidget *parent) :
     QWidget(parent),
@@ -11,12 +9,8 @@ MainMenu::MainMenu(QWidget *parent) :
     ui->setupUi(this);
 
     QPixmap background(":/backgrounds/common/background/background.png");
-
     background = background.scaled(size(), Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
-    // Создание кисти с изображением фона
     QBrush brush(background);
-
-    // Установка фона для виджета
     QPalette palette;
     palette.setBrush(QPalette::Window, brush);
     setPalette(palette);
@@ -36,38 +30,31 @@ MainMenu::MainMenu(QWidget *parent) :
         "    background-color: #303030;"
         "}"
         );
-        // Путь к вашему изображению кнопки
-        QString imagePath = ":/common/iconweb/discord.png";
 
-        // Найти кнопку по ее имени
-        QPushButton *button = ui->pushButton_4;
-
-        button->setStyleSheet(QString("QPushButton {"
-                                      "    border-image: url(%1);"
-                                      "}").arg(imagePath));
-
+    QString imagePath = ":/common/iconweb/discord.png";
+    QPushButton *button = ui->pushButton_4;
+    button->setStyleSheet(QString("QPushButton {"
+                                  "    border-image: url(%1);"
+                                  "}").arg(imagePath));
 }
 
-MainMenu::~MainMenu()
-{
+MainMenu::~MainMenu() {
     delete ui;
 }
 
-void MainMenu::on_pushButton_2_clicked()
-{
+void MainMenu::on_pushButton_2_clicked() {
     emit showSettings();
 }
 
-
-void MainMenu::on_pushButton_3_clicked()
-{
+void MainMenu::on_pushButton_3_clicked() {
     QApplication::quit();
 }
 
-
-void MainMenu::on_pushButton_4_clicked()
-{
+void MainMenu::on_pushButton_4_clicked() {
     QUrl url("https://discord.com/invite/rpC5crhj");
     QDesktopServices::openUrl(url);
 }
 
+void MainMenu::on_pushButton_clicked() {
+    emit showChapterSelection();
+}

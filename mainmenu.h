@@ -1,5 +1,3 @@
-// mainmenu.h
-
 #ifndef MAINMENU_H
 #define MAINMENU_H
 
@@ -20,14 +18,13 @@ public:
 
 signals:
     void showSettings();
+    void showChapterSelection();
 
 private slots:
-
     void on_pushButton_2_clicked();
-
     void on_pushButton_3_clicked();
-
     void on_pushButton_4_clicked();
+    void on_pushButton_clicked();
 
 private:
     Ui::MainMenu *ui;
