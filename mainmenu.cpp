@@ -1,5 +1,4 @@
 #include "mainmenu.h"
-#include "chapterselection.h"
 #include "ui_mainmenu.h"
 
 MainMenu::MainMenu(QWidget *parent) :
@@ -56,5 +55,5 @@ void MainMenu::on_pushButton_4_clicked() {
 }
 
 void MainMenu::on_pushButton_clicked() {
-    emit showChapterSelection();
+    emit showChapterSelection();  // Отправка сигнала для отображения виджета выбора главы
 }

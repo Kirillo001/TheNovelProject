@@ -1,78 +1,89 @@
 #include "novellagame.h"
 #include <QFile>
 #include <QTextStream>
+#include <QDebug>
+#include <QVBoxLayout>
+#include <QLabel>
+#include <QRegularExpression>
 
 NovellaGame::NovellaGame(QWidget *parent) :
-    QWidget(parent),
-    currentLine(0)
+    QWidget(parent)
 {
-    dialogLabel = new QLabel(this);
-    nextButton = new QPushButton("Next", this);
-    layout = new QVBoxLayout(this);
-    layout->addWidget(dialogLabel);
-    layout->addWidget(nextButton);
-
+    // Пример установки UI
+    QVBoxLayout *layout = new QVBoxLayout(this);
+    QLabel *label = new QLabel("Novella Game Screen", this);
+    layout->addWidget(label);
     setLayout(layout);
 
-    connect(nextButton, &QPushButton::clicked, this, &NovellaGame::onNextDialog);
+    qDebug() << "NovellaGame widget created.";
 }
 
-NovellaGame::~NovellaGame()
+void NovellaGame::loadChapter(const QString &chapterFile)
 {
+    qDebug() << "Loading chapter from file:" << chapterFile;
+    parseChapterFile(chapterFile);
+    displayDialogue(0); // Отобразить первый диалог
 }
 
-void NovellaGame::loadChapter(const QString &filePath)
+void NovellaGame::parseChapterFile(const QString &chapterFile)
 {
-    QFile file(filePath);
-    if (file.open(QIODevice::ReadOnly | QIODevice::Text))
-    {
-        QTextStream in(&file);
-        while (!in.atEnd())
-        {
-            QString line = in.readLine();
-            chapterLines.append(line);
+    QFile file(chapterFile);
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        qDebug() << "Cannot open file" << chapterFile;
+        return;
+    }
+
+    QTextStream in(&file);
+    Dialogue currentDialogue;
+    QRegularExpression reNumberedBlock(R"(\d+ \{)");
+    QRegularExpression reKeyValue(R"((\w+)\s*=\s*([\w_]+);)");
+    QRegularExpression reMethod(R"((\w+\.\w+\(\d+\));)");
+
+    while (!in.atEnd()) {
+        QString line = in.readLine().trimmed();
+
+        if (line.isEmpty()) continue;
+
+        if (reNumberedBlock.match(line).hasMatch()) {
+            if (!currentDialogue.sametext.isEmpty()) {
+                dialogues.append(currentDialogue);
+                currentDialogue = Dialogue();
+            }
+            continue;
         }
-        file.close();
+
+        if (line.startsWith("namespeak")) {
+            currentDialogue.namespeak = line.section('"', 1, 1);
+        } else if (line.startsWith("sametext")) {
+            currentDialogue.sametext = line.section('"', 1, 1);
+        } else if (line.startsWith("effect")) {
+            currentDialogue.effect = line.section('"', 1, 1);
+        } else if (line.startsWith("samecharacterimgxyz")) {
+            currentDialogue.samecharacterimgxyz = line.section('=', 1, 1).trimmed();
+        } else if (line.contains("musicMainMenu.playMusic")) {
+            currentDialogue.music = line.section('(', 1, 1).section(')', 0, 0).toInt();
+        }
     }
-    onNextDialog(); // Display the first line
+
+    if (!currentDialogue.sametext.isEmpty()) {
+        dialogues.append(currentDialogue);
+    }
+
+    qDebug() << "Parsed dialogues:" << dialogues.size();
 }
 
-void NovellaGame::onNextDialog()
+void NovellaGame::displayDialogue(int index)
 {
-    if (currentLine < chapterLines.size())
-    {
-        parseLine(chapterLines[currentLine]);
-        currentLine++;
-    }
-    else
-    {
-        dialogLabel->setText("End of Chapter");
-    }
-}
+    if (index < 0 || index >= dialogues.size()) return;
 
-void NovellaGame::parseLine(const QString &line)
-{
-    // Пример простого разбора строк, это можно улучшить
-    if (line.startsWith("namespeak"))
-    {
-        QString speaker = line.mid(line.indexOf("\"") + 1, line.lastIndexOf("\"") - line.indexOf("\"") - 1);
-        dialogLabel->setText(speaker);
-    }
-    else if (line.startsWith("sametext"))
-    {
-        QString text = line.mid(line.indexOf("\"") + 1, line.lastIndexOf("\"") - line.indexOf("\"") - 1);
-        dialogLabel->setText(text);
-    }
-    else if (line.startsWith("effect"))
-    {
-        // Добавьте логику для применения эффектов
-    }
-    else if (line.startsWith("samecharacterimgxyz"))
-    {
-        // Добавьте логику для отображения персонажа
-    }
-    else if (line.startsWith("playnewmusic"))
-    {
-        // Добавьте логику для воспроизведения музыки
-    }
+    Dialogue &dialogue = dialogues[index];
+    qDebug() << "Displaying dialogue:" << dialogue.namespeak << dialogue.sametext;
+    // Здесь можно добавить код для отображения диалога на экране
+
+    // Пример вывода информации для отладки
+    qDebug() << "Name:" << dialogue.namespeak;
+    qDebug() << "Text:" << dialogue.sametext;
+    qDebug() << "Effect:" << dialogue.effect;
+    qDebug() << "Character Image:" << dialogue.samecharacterimgxyz;
+    qDebug() << "Music:" << dialogue.music;
 }

@@ -19,11 +19,7 @@ signals:
     void chapterSelected(int chapter);
 
 private slots:
-    void on_chapter1Button_clicked();
-    void on_chapter2Button_clicked();
-
     void on_chapterSelectionButton_clicked();
-
     void on_chapterSelectionButton_2_clicked();
 
 private:

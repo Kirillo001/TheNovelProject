@@ -1,0 +1,3 @@
+namespeak "Narrator"
+sametext "This is the beginning of Chapter 1."
+effect "effect_boom"

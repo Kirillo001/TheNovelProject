@@ -5,6 +5,7 @@
 #include "chapterselection.h"
 #include "novellagame.h"
 #include "musicmanager.h"
+#include <QDebug>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -34,6 +35,8 @@ MainWindow::MainWindow(QWidget *parent)
 
     MusicManager musicManager;
     musicManager.playMusic(1);
+
+    qDebug() << "MainWindow initialized.";
 }
 
 MainWindow::~MainWindow()
@@ -43,23 +46,28 @@ MainWindow::~MainWindow()
 
 void MainWindow::showSettingsWidget()
 {
+    qDebug() << "Switching to settings widget.";
     stackedWidget->setCurrentWidget(settingsWidget);
 }
 
 void MainWindow::showMainMenuWidget()
 {
+    qDebug() << "Switching to main menu widget.";
     stackedWidget->setCurrentWidget(mainMenu);
 }
 
 void MainWindow::showChapterSelectionWidget()
 {
+    qDebug() << "Switching to chapter selection widget.";
     stackedWidget->setCurrentWidget(chapterSelection);
 }
 
 void MainWindow::showNovellaGameWidget(int chapter)
 {
-    // Загрузка главы в виджет новеллы
-    QString chapterFile = QString("chapter%1.txt").arg(chapter);
-    novellaGame->loadChapter(chapterFile);
+    qDebug() << "Switching to novella game widget. Chapter:" << chapter;
     stackedWidget->setCurrentWidget(novellaGame);
+
+    QString chapterPath = QString("chapters/chapter%1.txt").arg(chapter);
+    novellaGame->loadChapter(chapterPath);
 }
+

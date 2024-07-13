@@ -2,9 +2,15 @@
 #define NOVELLAGAME_H
 
 #include <QWidget>
-#include <QLabel>
-#include <QVBoxLayout>
-#include <QPushButton>
+#include <QVector>
+
+struct Dialogue {
+    QString namespeak;
+    QString sametext;
+    QString effect;
+    QString samecharacterimgxyz;
+    int music;
+};
 
 class NovellaGame : public QWidget
 {
@@ -12,20 +18,12 @@ class NovellaGame : public QWidget
 
 public:
     explicit NovellaGame(QWidget *parent = nullptr);
-    void loadChapter(const QString &filePath);
-    ~NovellaGame();
-
-private slots:
-    void onNextDialog();
+    void loadChapter(const QString &chapterFile);
 
 private:
-    QLabel *dialogLabel;
-    QVBoxLayout *layout;
-    QPushButton *nextButton;
-    int currentLine;
-    QStringList chapterLines;
-
-    void parseLine(const QString &line);
+    QVector<Dialogue> dialogues;
+    void parseChapterFile(const QString &chapterFile);
+    void displayDialogue(int index);
 };
 
 #endif // NOVELLAGAME_H
