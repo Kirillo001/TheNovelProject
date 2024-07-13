@@ -1,17 +1,17 @@
 #include "novellagame.h"
+#include "ui_novellagame.h"
 #include <QFile>
 #include <QTextStream>
 #include <QDebug>
 #include <QVBoxLayout>
-#include <QLabel>
 #include <QRegularExpression>
 
 NovellaGame::NovellaGame(QWidget *parent) :
-    QWidget(parent)
+    QWidget(parent),
+    ui(new Ui::NovellaGame)
 {
+ui->setupUi(this);
     QVBoxLayout *layout = new QVBoxLayout(this);
-    QLabel *label = new QLabel("Novella Game Screen", this);
-    layout->addWidget(label);
     setLayout(layout);
 
     qDebug() << "NovellaGame widget created.";

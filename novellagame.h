@@ -1,6 +1,7 @@
 #ifndef NOVELLAGAME_H
 #define NOVELLAGAME_H
 
+#include "ui_novellagame.h"
 #include <QWidget>
 #include <QVector>
 
@@ -24,6 +25,7 @@ private:
     QVector<Dialogue> dialogues;
     void parseChapterFile(const QString &chapterFile);
     void displayDialogue(int index);
+    Ui::NovellaGame *ui;
 };
 
 #endif // NOVELLAGAME_H
