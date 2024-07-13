@@ -32,8 +32,6 @@ ChapterSelection::ChapterSelection(QWidget *parent) :
         "    background-color: #303030;"
         "}"
         );
-
-    qDebug() << "ChapterSelection initialized.";
 }
 
 ChapterSelection::~ChapterSelection()

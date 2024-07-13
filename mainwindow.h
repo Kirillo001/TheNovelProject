@@ -5,6 +5,8 @@
 #include <QStackedWidget>
 #include <QMediaPlayer>
 #include <QAudioOutput>
+#include "chapterselection.h"
+#include "novellagame.h"
 
 class MainMenu;
 class GameSettings;
@@ -29,7 +31,7 @@ private slots:
     void showSettingsWidget();
     void showMainMenuWidget();
     void showChapterSelectionWidget();
-    void showNovellaGameWidget(int chapter);
+    void onChapterSelected(int chapter);
 
 private:
     Ui::MainWindow *ui;
@@ -38,7 +40,6 @@ private:
     GameSettings *settingsWidget;
     ChapterSelection *chapterSelection;
     NovellaGame *novellaGame;
-    QMediaPlayer *musicPlayer;
 };
 
 #endif // MAINWINDOW_H

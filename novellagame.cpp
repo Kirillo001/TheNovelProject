@@ -9,7 +9,6 @@
 NovellaGame::NovellaGame(QWidget *parent) :
     QWidget(parent)
 {
-    // Пример установки UI
     QVBoxLayout *layout = new QVBoxLayout(this);
     QLabel *label = new QLabel("Novella Game Screen", this);
     layout->addWidget(label);
@@ -35,7 +34,7 @@ void NovellaGame::parseChapterFile(const QString &chapterFile)
 
     QTextStream in(&file);
     Dialogue currentDialogue;
-    QRegularExpression reNumberedBlock(R"(\d+ \{)");
+    QRegularExpression reNumberedBlock(R"(\d+\s*\{)");
     QRegularExpression reKeyValue(R"((\w+)\s*=\s*([\w_]+);)");
     QRegularExpression reMethod(R"((\w+\.\w+\(\d+\));)");
 
@@ -44,9 +43,12 @@ void NovellaGame::parseChapterFile(const QString &chapterFile)
 
         if (line.isEmpty()) continue;
 
+        qDebug() << "Processing line:" << line;
+
         if (reNumberedBlock.match(line).hasMatch()) {
             if (!currentDialogue.sametext.isEmpty()) {
                 dialogues.append(currentDialogue);
+                qDebug() << "Added dialogue:" << currentDialogue.sametext;
                 currentDialogue = Dialogue();
             }
             continue;
@@ -67,6 +69,7 @@ void NovellaGame::parseChapterFile(const QString &chapterFile)
 
     if (!currentDialogue.sametext.isEmpty()) {
         dialogues.append(currentDialogue);
+        qDebug() << "Added final dialogue:" << currentDialogue.sametext;
     }
 
     qDebug() << "Parsed dialogues:" << dialogues.size();

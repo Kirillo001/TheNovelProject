@@ -1,3 +1,13 @@
-namespeak "Narrator"
-sametext "This is the beginning of Chapter 1."
-effect "effect_boom"
+1 {
+	namespeak "Главный герой";
+	sametext "Это начало главы 1.";
+	effect "effect_boom";
+	samecharacterimgxyz = position_one;
+	musicMainMenu.playMusic(2);
+}
+2 {
+	namespeak "Анон";
+	sametext "Привет";
+	samecharacterimgxyz = position_one;
+	musicMainMenu.playMusic(1);
+}

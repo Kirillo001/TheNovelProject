@@ -2,36 +2,31 @@
 #include "ui_mainwindow.h"
 #include "mainmenu.h"
 #include "gamesettings.h"
-#include "chapterselection.h"
-#include "novellagame.h"
 #include "musicmanager.h"
 #include <QDebug>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
+    , stackedWidget(new QStackedWidget(this))
+    , mainMenu(new MainMenu(this))
+    , settingsWidget(new GameSettings(this))
+    , chapterSelection(new ChapterSelection(this))
+    , novellaGame(new NovellaGame(this)) // Добавляем инициализацию NovellaGame
 {
     ui->setupUi(this);
 
-    stackedWidget = new QStackedWidget(this);
     setCentralWidget(stackedWidget);
 
-    mainMenu = new MainMenu(this);
     stackedWidget->addWidget(mainMenu);
-
-    settingsWidget = new GameSettings(this);
     stackedWidget->addWidget(settingsWidget);
-
-    chapterSelection = new ChapterSelection(this);
     stackedWidget->addWidget(chapterSelection);
-
-    novellaGame = new NovellaGame(this);
-    stackedWidget->addWidget(novellaGame);
+    stackedWidget->addWidget(novellaGame); // Добавляем NovellaGame в QStackedWidget
 
     connect(mainMenu, &MainMenu::showSettings, this, &MainWindow::showSettingsWidget);
-    connect(settingsWidget, &GameSettings::backToMainMenu, this, &MainWindow::showMainMenuWidget);
     connect(mainMenu, &MainMenu::showChapterSelection, this, &MainWindow::showChapterSelectionWidget);
-    connect(chapterSelection, &ChapterSelection::chapterSelected, this, &MainWindow::showNovellaGameWidget);
+    connect(settingsWidget, &GameSettings::backToMainMenu, this, &MainWindow::showMainMenuWidget);
+    connect(chapterSelection, &ChapterSelection::chapterSelected, this, &MainWindow::onChapterSelected);
 
     MusicManager musicManager;
     musicManager.playMusic(1);
@@ -46,28 +41,25 @@ MainWindow::~MainWindow()
 
 void MainWindow::showSettingsWidget()
 {
-    qDebug() << "Switching to settings widget.";
     stackedWidget->setCurrentWidget(settingsWidget);
 }
 
 void MainWindow::showMainMenuWidget()
 {
-    qDebug() << "Switching to main menu widget.";
     stackedWidget->setCurrentWidget(mainMenu);
 }
 
 void MainWindow::showChapterSelectionWidget()
 {
-    qDebug() << "Switching to chapter selection widget.";
     stackedWidget->setCurrentWidget(chapterSelection);
 }
 
-void MainWindow::showNovellaGameWidget(int chapter)
+void MainWindow::onChapterSelected(int chapter)
 {
     qDebug() << "Switching to novella game widget. Chapter:" << chapter;
-    stackedWidget->setCurrentWidget(novellaGame);
-
-    QString chapterPath = QString("chapters/chapter%1.txt").arg(chapter);
-    novellaGame->loadChapter(chapterPath);
+    QString chapterFile = QString("E:/newPrograms/Qt/TheNovelProject/common/chapters/chapter%1.txt").arg(chapter);
+    qDebug() << "Loading chapter from file:" << chapterFile;
+    novellaGame->loadChapter(chapterFile);
+    stackedWidget->setCurrentWidget(novellaGame); // Исправление здесь
 }
 
