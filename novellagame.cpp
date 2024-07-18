@@ -82,7 +82,9 @@ void NovellaGame::displayDialogue(int index)
     Dialogue &dialogue = dialogues[index];
     qDebug() << "Displaying dialogue:" << dialogue.namespeak << dialogue.sametext;
     // Здесь можно добавить код для отображения диалога на экране
-
+    // Обновляем содержимое виджетов на форме
+    ui->labelName->setText(dialogue.namespeak);
+    ui->textEditDialogue->setPlainText(dialogue.sametext);
     // Пример вывода информации для отладки
     qDebug() << "Name:" << dialogue.namespeak;
     qDebug() << "Text:" << dialogue.sametext;
