@@ -13,6 +13,7 @@ MainWindow::MainWindow(QWidget *parent)
     , settingsWidget(new GameSettings(this))
     , chapterSelection(new ChapterSelection(this))
     , novellaGame(new NovellaGame(this))
+    , loadMenu(new LoadMenu(this))
 {
     ui->setupUi(this);
 
@@ -22,9 +23,11 @@ MainWindow::MainWindow(QWidget *parent)
     stackedWidget->addWidget(settingsWidget);
     stackedWidget->addWidget(chapterSelection);
     stackedWidget->addWidget(novellaGame);
+    stackedWidget->addWidget(loadMenu);
 
     connect(mainMenu, &MainMenu::showSettings, this, &MainWindow::showSettingsWidget);
     connect(mainMenu, &MainMenu::showChapterSelection, this, &MainWindow::showChapterSelectionWidget);
+    connect(mainMenu, &MainMenu::showLoadMenu, this, &MainWindow::showLoadMenu);
     connect(settingsWidget, &GameSettings::backToMainMenu, this, &MainWindow::showMainMenuWidget);
     connect(chapterSelection, &ChapterSelection::chapterSelected, this, &MainWindow::onChapterSelected);
 
@@ -43,7 +46,10 @@ void MainWindow::showSettingsWidget()
 {
     stackedWidget->setCurrentWidget(settingsWidget);
 }
-
+void MainWindow::showLoadMenu()
+{
+    stackedWidget->setCurrentWidget(loadMenu);
+}
 void MainWindow::showMainMenuWidget()
 {
     stackedWidget->setCurrentWidget(mainMenu);
@@ -62,4 +68,6 @@ void MainWindow::onChapterSelected(int chapter)
     novellaGame->loadChapter(chapterFile);
     stackedWidget->setCurrentWidget(novellaGame);
 }
+
+
 

@@ -7,6 +7,12 @@
 #include <QAudioOutput>
 #include "chapterselection.h"
 #include "novellagame.h"
+#include "loadmenu.h"
+#include <QListWidget>
+#include <QListWidgetItem>
+#include <QVBoxLayout>
+#include <QPushButton>
+#include <QLabel>
 
 class MainMenu;
 class GameSettings;
@@ -34,6 +40,10 @@ private slots:
     void onChapterSelected(int chapter);
     void on_exitButton_clicked();
     void showExitConfirmation();
+    void showLoadMenu();
+    void setupSaveList();
+    void loadGame(int saveIndex);
+    void deleteSave(int saveIndex);
 
 private:
     Ui::MainWindow *ui;
@@ -42,6 +52,7 @@ private:
     GameSettings *settingsWidget;
     ChapterSelection *chapterSelection;
     NovellaGame *novellaGame;
+    LoadMenu *loadMenu;
 };
 
 #endif // MAINWINDOW_H

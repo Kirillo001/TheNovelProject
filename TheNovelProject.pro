@@ -12,6 +12,7 @@ CONFIG += c++17
 SOURCES += \
     chapterselection.cpp \
     gamesettings.cpp \
+    loadmenu.cpp \
     main.cpp \
     mainmenu.cpp \
     mainwindow.cpp \
@@ -22,6 +23,7 @@ SOURCES += \
 HEADERS += \
     chapterselection.h \
     gamesettings.h \
+    loadmenu.h \
     mainmenu.h \
     mainwindow.h \
     musicmanager.h \
@@ -31,6 +33,7 @@ HEADERS += \
 FORMS += \
     chapterselection.ui \
     gamesettings.ui \
+    loadmenu.ui \
     mainmenu.ui \
     mainwindow.ui \
     novellagame.ui

@@ -57,3 +57,9 @@ void MainMenu::on_pushButton_4_clicked() {
 void MainMenu::on_pushButton_clicked() {
     emit showChapterSelection();  // Отправка сигнала для отображения виджета выбора главы
 }
+
+void MainMenu::on_pushButton_5_clicked()
+{
+    emit showLoadMenu();
+}
+
