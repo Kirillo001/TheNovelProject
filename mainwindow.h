@@ -32,6 +32,8 @@ private slots:
     void showMainMenuWidget();
     void showChapterSelectionWidget();
     void onChapterSelected(int chapter);
+    void on_exitButton_clicked();
+    void showExitConfirmation();
 
 private:
     Ui::MainWindow *ui;

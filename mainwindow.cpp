@@ -12,7 +12,7 @@ MainWindow::MainWindow(QWidget *parent)
     , mainMenu(new MainMenu(this))
     , settingsWidget(new GameSettings(this))
     , chapterSelection(new ChapterSelection(this))
-    , novellaGame(new NovellaGame(this)) // Добавляем инициализацию NovellaGame
+    , novellaGame(new NovellaGame(this))
 {
     ui->setupUi(this);
 
@@ -21,7 +21,7 @@ MainWindow::MainWindow(QWidget *parent)
     stackedWidget->addWidget(mainMenu);
     stackedWidget->addWidget(settingsWidget);
     stackedWidget->addWidget(chapterSelection);
-    stackedWidget->addWidget(novellaGame); // Добавляем NovellaGame в QStackedWidget
+    stackedWidget->addWidget(novellaGame);
 
     connect(mainMenu, &MainMenu::showSettings, this, &MainWindow::showSettingsWidget);
     connect(mainMenu, &MainMenu::showChapterSelection, this, &MainWindow::showChapterSelectionWidget);
@@ -60,6 +60,6 @@ void MainWindow::onChapterSelected(int chapter)
     QString chapterFile = QString("E:/newPrograms/Qt/TheNovelProject/common/chapters/chapter%1.txt").arg(chapter);
     qDebug() << "Loading chapter from file:" << chapterFile;
     novellaGame->loadChapter(chapterFile);
-    stackedWidget->setCurrentWidget(novellaGame); // Исправление здесь
+    stackedWidget->setCurrentWidget(novellaGame);
 }
 

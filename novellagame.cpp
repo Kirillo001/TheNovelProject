@@ -3,25 +3,43 @@
 #include <QFile>
 #include <QTextStream>
 #include <QDebug>
-#include <QVBoxLayout>
 #include <QRegularExpression>
 
 NovellaGame::NovellaGame(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::NovellaGame)
 {
-ui->setupUi(this);
-    QVBoxLayout *layout = new QVBoxLayout(this);
-    setLayout(layout);
-
+    ui->setupUi(this);
     qDebug() << "NovellaGame widget created.";
+
+    setStyleSheet(
+        "QPushButton {"
+        "    background-color: #303030;"
+        "    color: #ffffff;"
+        "    border: 2px solid #000000;"
+        "    border-radius: 5px;"
+        "    padding: 5px 10px;"
+        "}"
+        "QPushButton:hover {"
+        "    background-color: #4d4d4d;"
+        "}"
+        "QPushButton:pressed {"
+        "    background-color: #303030;"
+        "}"
+        );
+}
+
+NovellaGame::~NovellaGame()
+{
+    delete ui;
 }
 
 void NovellaGame::loadChapter(const QString &chapterFile)
 {
     qDebug() << "Loading chapter from file:" << chapterFile;
     parseChapterFile(chapterFile);
-    displayDialogue(0); // Отобразить первый диалог
+    currentDialogueIndex = 0; // Установите начальный индекс на 0
+    displayDialogue(currentDialogueIndex); // Отобразить первый диалог
 }
 
 void NovellaGame::parseChapterFile(const QString &chapterFile)
@@ -81,14 +99,22 @@ void NovellaGame::displayDialogue(int index)
 
     Dialogue &dialogue = dialogues[index];
     qDebug() << "Displaying dialogue:" << dialogue.namespeak << dialogue.sametext;
-    // Здесь можно добавить код для отображения диалога на экране
-    // Обновляем содержимое виджетов на форме
+
+    // Отображение имени и текста
     ui->labelName->setText(dialogue.namespeak);
     ui->textEditDialogue->setPlainText(dialogue.sametext);
-    // Пример вывода информации для отладки
-    qDebug() << "Name:" << dialogue.namespeak;
-    qDebug() << "Text:" << dialogue.sametext;
-    qDebug() << "Effect:" << dialogue.effect;
-    qDebug() << "Character Image:" << dialogue.samecharacterimgxyz;
-    qDebug() << "Music:" << dialogue.music;
+}
+
+void NovellaGame::mousePressEvent(QMouseEvent *event)
+{
+    if (event->button() == Qt::LeftButton) {
+        currentDialogueIndex++;
+        if (currentDialogueIndex < dialogues.size()) {
+            displayDialogue(currentDialogueIndex);
+        } else {
+            qDebug() << "End of dialogues.";
+            QApplication::quit();
+        }
+    }
+    QWidget::mousePressEvent(event);
 }

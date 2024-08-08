@@ -13,5 +13,12 @@
         <file>common/chapters/chapter1.txt</file>
         <file>common/chapters/chapter2.txt</file>
         <file>common/interface/novella/novellatable.png</file>
+        <file>common/background/novellabg/1.jpg</file>
+        <file>common/background/novellabg/2.jpg</file>
+        <file>common/background/novellabg/3.jpg</file>
+        <file>common/background/novellabg/4.jpg</file>
+        <file>common/background/novellabg/5.jpg</file>
+        <file>common/interface/novella/loadtable.png</file>
+        <file>common/interface/novella/savetable.png</file>
     </qresource>
 </RCC>

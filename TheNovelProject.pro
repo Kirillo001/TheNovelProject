@@ -16,7 +16,8 @@ SOURCES += \
     mainmenu.cpp \
     mainwindow.cpp \
     musicmanager.cpp \
-    novellagame.cpp
+    novellagame.cpp \
+    settingsmanager.cpp
 
 HEADERS += \
     chapterselection.h \
@@ -24,7 +25,8 @@ HEADERS += \
     mainmenu.h \
     mainwindow.h \
     musicmanager.h \
-    novellagame.h
+    novellagame.h \
+    settingsmanager.h
 
 FORMS += \
     chapterselection.ui \
