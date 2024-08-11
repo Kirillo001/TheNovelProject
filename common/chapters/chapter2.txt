@@ -1,4 +1,5 @@
 1 {
+	background "village_bg";
     namespeak "Главный герой";
     sametext "Это начало главы 2.";
     effect "effect_boom";

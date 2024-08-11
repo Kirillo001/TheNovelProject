@@ -4,6 +4,8 @@
 #include <QTextStream>
 #include <QDebug>
 #include <QRegularExpression>
+#include <QPixmap>
+#include <QPalette>
 
 NovellaGame::NovellaGame(QWidget *parent) :
     QWidget(parent),
@@ -118,3 +120,49 @@ void NovellaGame::mousePressEvent(QMouseEvent *event)
     }
     QWidget::mousePressEvent(event);
 }
+
+void NovellaGame::processLine(const QString &line)
+{
+    if (line.startsWith("namespeak"))
+    {
+        QString name = extractValue(line);
+        dialogues[currentDialogueIndex].namespeak = name;
+    }
+    else if (line.startsWith("sametext"))
+    {
+        QString text = extractValue(line);
+        dialogues[currentDialogueIndex].sametext = text;
+    }
+    else if (line.startsWith("effect"))
+    {
+        QString effect = extractValue(line);
+        dialogues[currentDialogueIndex].effect = effect;
+    }
+    else if (line.startsWith("samecharacterimgxyz"))
+    {
+        QString image = extractValue(line);
+        dialogues[currentDialogueIndex].samecharacterimgxyz = image;
+    }
+    else if (line.startsWith("musicMainMenu.playMusic"))
+    {
+        bool ok;
+        int musicIndex = extractValue(line).toInt(&ok);
+        if (ok)
+        {
+            dialogues[currentDialogueIndex].music = musicIndex;
+        }
+    }
+    // Можно добавить обработку других полей, если они есть
+}
+
+QString NovellaGame::extractValue(const QString &line)
+{
+    int start = line.indexOf('"') + 1;
+    int end = line.lastIndexOf('"');
+    if (start > 0 && end > start)
+    {
+        return line.mid(start, end - start);
+    }
+    return QString();
+}
+

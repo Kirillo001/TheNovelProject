@@ -22,6 +22,7 @@ public:
     explicit NovellaGame(QWidget *parent = nullptr);
     ~NovellaGame();
     void loadChapter(const QString &chapterFile);
+    void setBackgroundImage(const QString &imagePath);
 
 protected:
     void mousePressEvent(QMouseEvent *event) override;
@@ -32,6 +33,8 @@ private:
     void displayDialogue(int index);
     Ui::NovellaGame *ui;
     int currentDialogueIndex = 0;
+    void processLine(const QString &line);
+    QString extractValue(const QString &line);
 };
 
 #endif // NOVELLAGAME_H
