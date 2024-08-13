@@ -38,12 +38,7 @@ private slots:
     void showMainMenuWidget();
     void showChapterSelectionWidget();
     void onChapterSelected(int chapter);
-    void on_exitButton_clicked();
-    void showExitConfirmation();
     void showLoadMenu();
-    void setupSaveList();
-    void loadGame(int saveIndex);
-    void deleteSave(int saveIndex);
 
 private:
     Ui::MainWindow *ui;

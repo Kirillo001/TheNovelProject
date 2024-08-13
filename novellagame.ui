@@ -16,25 +16,6 @@
   <property name="autoFillBackground">
    <bool>true</bool>
   </property>
-  <widget class="QLabel" name="label">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>1281</width>
-     <height>721</height>
-    </rect>
-   </property>
-   <property name="autoFillBackground">
-    <bool>true</bool>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-   <property name="pixmap">
-    <pixmap resource="resources.qrc">:/common/interface/novella/novellatable.png</pixmap>
-   </property>
-  </widget>
   <widget class="QLabel" name="labelName">
    <property name="geometry">
     <rect>
@@ -185,8 +166,8 @@
   <widget class="QLabel" name="backgroundLabel">
    <property name="geometry">
     <rect>
-     <x>-2</x>
-     <y>-5</y>
+     <x>10</x>
+     <y>-120</y>
      <width>1291</width>
      <height>731</height>
     </rect>
@@ -198,9 +179,29 @@
     <string>TextLabel</string>
    </property>
   </widget>
+  <widget class="QFrame" name="frameInterface">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1281</width>
+     <height>721</height>
+    </rect>
+   </property>
+   <property name="autoFillBackground">
+    <bool>false</bool>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+  </widget>
  </widget>
- <resources>
-  <include location="resources.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>
