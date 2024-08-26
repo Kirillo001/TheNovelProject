@@ -17,6 +17,9 @@
    <bool>true</bool>
   </property>
   <widget class="QLabel" name="labelName">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
    <property name="geometry">
     <rect>
      <x>130</x>
@@ -35,6 +38,9 @@
    </property>
   </widget>
   <widget class="QTextEdit" name="textEditDialogue">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
    <property name="geometry">
     <rect>
      <x>130</x>
@@ -74,6 +80,9 @@
    </property>
   </widget>
   <widget class="QPushButton" name="pushButton_4">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
    <property name="geometry">
     <rect>
      <x>200</x>
@@ -92,6 +101,9 @@
    </property>
   </widget>
   <widget class="QPushButton" name="pushButton_5">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
    <property name="geometry">
     <rect>
      <x>390</x>
@@ -110,6 +122,9 @@
    </property>
   </widget>
   <widget class="QPushButton" name="pushButton_6">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
    <property name="geometry">
     <rect>
      <x>580</x>
@@ -128,6 +143,9 @@
    </property>
   </widget>
   <widget class="QPushButton" name="pushButton_7">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
    <property name="geometry">
     <rect>
      <x>770</x>
@@ -146,6 +164,9 @@
    </property>
   </widget>
   <widget class="QPushButton" name="pushButton_8">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
    <property name="geometry">
     <rect>
      <x>960</x>
@@ -161,22 +182,6 @@
    </property>
    <property name="text">
     <string>Exit</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="backgroundLabel">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>-120</y>
-     <width>1291</width>
-     <height>731</height>
-    </rect>
-   </property>
-   <property name="autoFillBackground">
-    <bool>false</bool>
-   </property>
-   <property name="text">
-    <string>TextLabel</string>
    </property>
   </widget>
   <widget class="QFrame" name="frameInterface">

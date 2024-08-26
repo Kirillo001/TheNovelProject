@@ -16,9 +16,11 @@
         <file>common/background/novellabg/2.jpg</file>
         <file>common/background/novellabg/3.jpg</file>
         <file>common/background/novellabg/4.jpg</file>
-        <file>common/background/novellabg/5.jpg</file>
         <file>common/interface/novella/loadtable.png</file>
         <file>common/interface/novella/savetable.png</file>
         <file>common/background/novellabg/village_bg.jpg</file>
+        <file>common/background/novellabg/boiler_bg.jpg</file>
+        <file>common/characters/sprite/niggasoy.png</file>
+        <file>common/characters/sprite/yakub.png</file>
     </qresource>
 </RCC>

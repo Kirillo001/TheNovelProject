@@ -7,32 +7,42 @@
     musicMainMenu.playMusic(2);
 }
 2 {
+	
     namespeak "Анон";
     sametext "Привет";
+	effect "effect_boom";
     samecharacterimgxyz = position_one;
     musicMainMenu.playMusic(1);
 }
 3 {
+	
     namespeak "Анон2";
     sametext "Дарова";
+	effect "effect_boom";
     samecharacterimgxyz = position_one;
     musicMainMenu.playMusic(1);
 }
 4 {
+	background "boiler_bg";
     namespeak "Анон2";
-    sametext "1";
+	effect "effect_boom";
+    sametext "2488 ГОДУ ВСЁ ЧЕЛОВЕЧЕСТВО ВЫМРЕТ";
     samecharacterimgxyz = position_one;
     musicMainMenu.playMusic(1);
 }
 5 {
+	
     namespeak "Анон2";
     sametext "2";
+	effect "effect_boom";
     samecharacterimgxyz = position_one;
     musicMainMenu.playMusic(1);
 }
 6 {
+	
     namespeak "Анон2";
     sametext "3";
+	effect "effect_boom";
     samecharacterimgxyz = position_one;
     musicMainMenu.playMusic(1);
 }

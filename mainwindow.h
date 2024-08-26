@@ -13,6 +13,10 @@
 #include <QVBoxLayout>
 #include <QPushButton>
 #include <QLabel>
+#include <QDir>
+#include <QFile>
+#include <QTextStream>
+#include <QStandardPaths>
 
 class MainMenu;
 class GameSettings;
@@ -32,6 +36,8 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+    void initializeSaveSystem();
+    void loadSettings();
 
 private slots:
     void showSettingsWidget();

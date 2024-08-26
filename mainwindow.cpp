@@ -17,6 +17,8 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
+    initializeSaveSystem();
+
     setCentralWidget(stackedWidget);
 
     stackedWidget->addWidget(mainMenu);
@@ -68,6 +70,44 @@ void MainWindow::onChapterSelected(int chapter)
     novellaGame->loadChapter(chapterFile);
     stackedWidget->setCurrentWidget(novellaGame);
 }
+
+void MainWindow::initializeSaveSystem()
+{
+    qDebug() << "Initializing save system...";
+
+    // Получаем путь к папке "Local Application Data"
+    QString appDataPath = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation);
+    QString saveDirPath = appDataPath + "/saves";
+
+    QDir saveDir(saveDirPath);
+    if (!saveDir.exists()) {
+        bool created = saveDir.mkpath(saveDirPath);
+        if (created) {
+            qDebug() << "Directory created successfully:" << saveDirPath;
+        } else {
+            qDebug() << "Failed to create directory:" << saveDirPath;
+            return;
+        }
+    } else {
+        qDebug() << "Directory already exists:" << saveDirPath;
+    }
+
+    // Попробуем создать файл other.txt
+    QString filePath = saveDirPath + "/other.txt";
+    QFile testFile(filePath);
+    if (testFile.open(QIODevice::WriteOnly)) {
+        qDebug() << "File created successfully:" << filePath;
+        testFile.close();
+    } else {
+        qDebug() << "Failed to create file:" << filePath;
+        qDebug() << "Error code:" << testFile.error();
+        qDebug() << "Error string:" << testFile.errorString();
+    }
+
+    qDebug() << "Save system initialized.";
+}
+
+
 
 
 
