@@ -1,5 +1,3 @@
-// musicmanager.h
-
 #ifndef MUSICMANAGER_H
 #define MUSICMANAGER_H
 
@@ -21,4 +19,4 @@ public slots:
     void setVolume(int volume);
 };
 
-#endif // MUSICMANAGER_H
+#endif

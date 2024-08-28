@@ -1,6 +1,4 @@
-// gamesettings.cpp
-
-#include "gamesettings.h"
+#include "gamesettings.h"                   //Виджет настроек, все приблуды и хуйни для настроек должны были находиться отчасти здесь и отчасти в mainwindow.
 #include "ui_gamesettings.h"
 #include "musicmanager.h"
 
@@ -12,13 +10,12 @@ GameSettings::GameSettings(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    QPixmap background(":/backgrounds/common/background/background.png");
+    QPixmap background(":/backgrounds/common/background/background.png");                   //этот колхоз будете видеть почти во всех виджетах.
 
     background = background.scaled(size(), Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
-    // Создание кисти с изображением фона
+
     QBrush brush(background);
 
-    // Установка фона для виджета
     QPalette palette;
     palette.setBrush(QPalette::Window, brush);
     setPalette(palette);
@@ -38,9 +35,9 @@ GameSettings::GameSettings(QWidget *parent) :
         "    background-color: #303030;"
         "}"
         "QFrame {"
-        "    background-color: rgba(48, 48, 48, 160);"  // Цвет фона
-        "    border: 2px solid #000000;"  // Цвет границы и ее толщина
-        "    border-radius: 5px;"         // Радиус скругления углов
+        "    background-color: rgba(48, 48, 48, 160);"
+        "    border: 2px solid #000000;"
+        "    border-radius: 5px;"
         "}"
         "QLabel {"
         "    background-color: rgba(48, 48, 48, 0);"
@@ -54,7 +51,6 @@ GameSettings::~GameSettings()
     delete ui;
 }
 
-// gamesettings.cpp
 
 void GameSettings::on_pushButton_3_clicked()
 {
@@ -62,13 +58,13 @@ void GameSettings::on_pushButton_3_clicked()
 }
 
 
-void GameSettings::on_pushButton_4_clicked() //СНПМОДОСТ
+void GameSettings::on_pushButton_4_clicked()
 {
     musicMainMenu.playMusic(1);
 }
 
 
-void GameSettings::on_pushButton_5_clicked() //ПАСХОАЛКО 1499
+void GameSettings::on_pushButton_5_clicked()
 {
     musicMainMenu.playMusic(2);
 }

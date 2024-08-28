@@ -3,23 +3,21 @@
     namespeak "Главный герой";
     sametext "Это начало главы 2.";
     effect "effect_boom";
-    samecharacterimgxyz = position_one;
+    samecharacterimgxyz = "character_null;character_null";
     musicMainMenu.playMusic(2);
 }
 2 {
-	
     namespeak "Анон";
     sametext "Привет";
 	effect "effect_boom";
-    samecharacterimgxyz = position_one;
+    samecharacterimgxyz = "yakub_ch;niggasoy_ch";
     musicMainMenu.playMusic(1);
 }
 3 {
-	
     namespeak "Анон2";
     sametext "Дарова";
 	effect "effect_boom";
-    samecharacterimgxyz = position_one;
+    samecharacterimgxyz = "yakub_ch;niggasoy_ch";
     musicMainMenu.playMusic(1);
 }
 4 {
@@ -27,22 +25,20 @@
     namespeak "Анон2";
 	effect "effect_boom";
     sametext "2488 ГОДУ ВСЁ ЧЕЛОВЕЧЕСТВО ВЫМРЕТ";
-    samecharacterimgxyz = position_one;
+    samecharacterimgxyz = "yakub_ch;niggasoy_ch";
     musicMainMenu.playMusic(1);
 }
 5 {
-	
     namespeak "Анон2";
     sametext "2";
 	effect "effect_boom";
-    samecharacterimgxyz = position_one;
+    samecharacterimgxyz = "yakub_ch;niggasoy_ch";
     musicMainMenu.playMusic(1);
 }
 6 {
-	
     namespeak "Анон2";
     sametext "3";
 	effect "effect_boom";
-    samecharacterimgxyz = position_one;
+    samecharacterimgxyz = "yakub_ch;niggasoy_ch";
     musicMainMenu.playMusic(1);
 }

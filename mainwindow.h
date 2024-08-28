@@ -1,5 +1,5 @@
 #ifndef MAINWINDOW_H
-#define MAINWINDOW_H
+#define MAINWINDOW_H  //де-факто главный файлик окна, mainwindow родительский класс почти всех классов в списке.
 
 #include <QMainWindow>
 #include <QStackedWidget>
@@ -56,4 +56,4 @@ private:
     LoadMenu *loadMenu;
 };
 
-#endif // MAINWINDOW_H
+#endif

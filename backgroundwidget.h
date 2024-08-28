@@ -1,5 +1,5 @@
 #ifndef BACKGROUNDWIDGET_H
-#define BACKGROUNDWIDGET_H
+#define BACKGROUNDWIDGET_H //типичный заголовочный файлик (не знаете что такое заголовочный файл, ищите сами)
 
 #include <QWidget>
 #include <QPixmap>
@@ -19,4 +19,4 @@ private:
     QPixmap m_background;
 };
 
-#endif // BACKGROUNDWIDGET_H
+#endif

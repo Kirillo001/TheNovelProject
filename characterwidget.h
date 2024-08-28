@@ -22,4 +22,4 @@ private:
     QPixmap m_rightCharacter;
 };
 
-#endif // CHARACTERWIDGET_H
+#endif

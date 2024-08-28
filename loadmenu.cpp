@@ -1,4 +1,4 @@
-#include "loadmenu.h"
+#include "loadmenu.h"                       //в коде оно работает, в игре не особо, тут пыталось зделаться возможность загружать и удолять сейвы, короче лютый колхоз смешанный с выдумками ИИ.
 #include "ui_loadmenu.h"
 
 #include <QPushButton>
@@ -12,9 +12,8 @@ LoadMenu::LoadMenu(QWidget *parent)
 {
     ui->setupUi(this);
 
-    setupSaveList(); //вызывает функцию связанную с тем скролл-блоком.
+    setupSaveList();
 
-    // Установка фона виджета
     QPixmap background(":/backgrounds/common/background/background.png");
     background = background.scaled(size(), Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
     QBrush brush(background);
@@ -22,7 +21,6 @@ LoadMenu::LoadMenu(QWidget *parent)
     palette.setBrush(QPalette::Window, brush);
     setPalette(palette);
 
-    // Установка стилей для кнопок и скролл-блоков
     setStyleSheet(
         "QPushButton {"
         "    background-color: #303030;"
@@ -98,14 +96,14 @@ LoadMenu::~LoadMenu()
     delete ui;
 }
 
-void LoadMenu::setupSaveList()
+void LoadMenu::setupSaveList()                                  //это короче та хуйня в виде листа сейвов и отчасти некоторые нереализованные механики которые отчасти я вычистил и которые я отчасти отказался.
 {
     if (!ui->saveListWidget) {
         qDebug() << "saveListWidget не найден!";
         return;
     }
 
-    ui->saveListWidget->clear(); // Очистим список, чтобы избежать дубликатов
+    ui->saveListWidget->clear();
 
     for (int i = 0; i < 5; ++i) {
         QListWidgetItem *item = new QListWidgetItem(ui->saveListWidget);

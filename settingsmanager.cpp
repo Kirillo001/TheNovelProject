@@ -3,15 +3,14 @@
 #include <QTextStream>
 #include <QDebug>
 
-SettingsManager::SettingsManager(const QString &filePath)
+SettingsManager::SettingsManager(const QString &filePath)               //нерабочий класс по сути, а так где-то чут чут задействован и не работает нихуя
     : filePath(filePath)
 {
-    // Создать файл, если он не существует
     QFile file(filePath);
     if (!file.exists()) {
         if (file.open(QIODevice::WriteOnly)) {
             QTextStream out(&file);
-            out << "volume=50\n"; // Например, установить громкость по умолчанию на 50
+            out << "volume=50\n";
             file.close();
         }
     }
@@ -29,7 +28,7 @@ int SettingsManager::loadVolumeSetting()
             return line.section('=', 1, 1).toInt();
         }
     }
-    return 50; // Громкость по умолчанию, если файл не найден или нет данных
+    return 50;
 }
 
 void SettingsManager::saveVolumeSetting(int volume)

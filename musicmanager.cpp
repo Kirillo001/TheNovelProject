@@ -1,6 +1,4 @@
-// musicmanager.cpp
-
-#include "musicmanager.h"
+#include "musicmanager.h"                                       //Сука гондоны вырезали пол соунд возможностей в виде простой регулировки громкости поэтому пришлось использовать костыли нейронки.
 
 QMediaPlayer *MusicManager::mainmusic = nullptr;
 QAudioOutput *MusicManager::audioOutput = nullptr;
@@ -22,16 +20,14 @@ void MusicManager::playMusic(int trackNumber)
     case 2:
         source = "qrc:/common/sound/music/pashalko.mp3";
         break;
-    // Добавьте другие треки по аналогии
     default:
-        // Если передано недопустимое значение, ничего не делаем
         return;
     }
 
     mainmusic->setSource(QUrl(source));
     mainmusic->play();
 }
-void MusicManager::setVolume(int volume)
+void MusicManager::setVolume(int volume)                    //эта хуета могла быть намного меньше если бы не 6 версия Qt
 {
     qreal linearVolume = QAudio::convertVolume(volume / qreal(100.0),
                                                QAudio::LogarithmicVolumeScale,

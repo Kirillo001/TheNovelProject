@@ -1,4 +1,4 @@
-#include "novellagame.h"
+#include "novellagame.h"                                                //Опять говно в пюрешку подсыпали, виджет и логика самой игры.
 #include "ui_novellagame.h"
 #include <QFile>
 #include <QTextStream>
@@ -16,8 +16,8 @@ NovellaGame::NovellaGame(QWidget *parent) :
     qDebug() << "NovellaGame widget created.";
 
     backgroundWidget = new BackgroundWidget(this);
-    backgroundWidget->setGeometry(this->rect()); // Устанавливаем размер виджета фона
-    backgroundWidget->lower(); // Размещаем виджет под другими элементами
+    backgroundWidget->setGeometry(this->rect());
+    backgroundWidget->lower();
 
     characterWidget = new CharacterWidget(this);
 
@@ -26,6 +26,9 @@ NovellaGame::NovellaGame(QWidget *parent) :
     setLayout(layout);
 
     characterWidget->raise();
+
+    addCharacterSprite("niggasoy_ch", ":/common/characters/sprite/niggasoy.png");
+    addCharacterSprite("yakub_ch", ":/common/characters/sprite/yakub.png");
 
     setStyleSheet(
         "QPushButton {"
@@ -42,16 +45,15 @@ NovellaGame::NovellaGame(QWidget *parent) :
         "    background-color: #303030;"
         "}"
         );
-    // Предположим, вы находитесь в методе, связанном с вашим главным окном или виджетом
     QPixmap sprite(":/common/interface/novella/novellatable.png");
     QLabel *spriteLabel = new QLabel(ui->frameInterface);
     spriteLabel->setPixmap(sprite.scaled(ui->frameInterface->size(), Qt::KeepAspectRatio, Qt::SmoothTransformation));
-    spriteLabel->setGeometry(0, 0, ui->frameInterface->width(), ui->frameInterface->height()); // Установка размеров как у QFrame
+    spriteLabel->setGeometry(0, 0, ui->frameInterface->width(), ui->frameInterface->height());
     spriteLabel->show();
 
-    ui->frameInterface->lower();  // Перемещаем QFrame на задний план
-    ui->labelName->raise();       // Поднимаем лейбл имени на передний план
-    ui->textEditDialogue->raise(); // Поднимаем текстовое поле на передний план
+    ui->frameInterface->lower();
+    ui->labelName->raise();
+    ui->textEditDialogue->raise();
     ui->pushButton_4->raise();
     ui->pushButton_5->raise();
     ui->pushButton_6->raise();
@@ -72,15 +74,15 @@ NovellaGame::~NovellaGame()
     delete ui;
 }
 
-void NovellaGame::loadChapter(const QString &chapterFile)
+void NovellaGame::loadChapter(const QString &chapterFile)               //ну блять имя функции само за себя говорит
 {
     qDebug() << "Loading chapter from file:" << chapterFile;
     parseChapterFile(chapterFile);
-    currentDialogueIndex = 0; // Установите начальный индекс на 0
-    displayDialogue(currentDialogueIndex); // Отобразить первый диалог
+    currentDialogueIndex = 0;
+    displayDialogue(currentDialogueIndex);
 }
 
-void NovellaGame::parseChapterFile(const QString &chapterFile)
+void NovellaGame::parseChapterFile(const QString &chapterFile)          //Тут короче chapter*НОМЕР*.txt ищет разные строчки и ищет содержимое и читает его.
 {
     QFile file(chapterFile);
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
@@ -108,8 +110,8 @@ void NovellaGame::parseChapterFile(const QString &chapterFile)
             continue;
         }
 
-        if (line.startsWith("background")) {
-            currentDialogue.background = line.section('"', 1, 1);  // Сохраняем фон в текущий диалог
+        if (line.startsWith("background")) {                                            //тут вы сами пон.
+            currentDialogue.background = line.section('"', 1, 1);
         } else if (line.startsWith("namespeak")) {
             currentDialogue.namespeak = line.section('"', 1, 1);
         } else if (line.startsWith("sametext")) {
@@ -132,25 +134,28 @@ void NovellaGame::parseChapterFile(const QString &chapterFile)
 }
 
 
-void NovellaGame::displayDialogue(int index)
+void NovellaGame::displayDialogue(int index)                                        //я называю это динамической функцией которая сама показывает и изменяет детали в игре, тип текст изменяет на следующий и т.п.
 {
     if (index < 0 || index >= dialogues.size()) return;
 
     Dialogue &dialogue = dialogues[index];
     qDebug() << "Displaying dialogue:" << dialogue.namespeak << dialogue.sametext;
 
-    // Изменение фона только при необходимости
     if (!dialogue.background.isEmpty()) {
-        setBackgroundImage(dialogue.background);
+        setBackgroundImage(dialogue.background);                                   //дада тут бекграунды
     }
 
-    // Отображение имени и текста
+    QString leftCharacter = extractValue(dialogue.samecharacterimgxyz.section(';', 0, 0).trimmed());
+    QString rightCharacter = extractValue(dialogue.samecharacterimgxyz.section(';', 1, 1).trimmed());
+    setCharacters(leftCharacter, rightCharacter);
+
     ui->labelName->setText(dialogue.namespeak);
     ui->textEditDialogue->setPlainText(dialogue.sametext);
 }
 
 
-void NovellaGame::mousePressEvent(QMouseEvent *event)
+
+void NovellaGame::mousePressEvent(QMouseEvent *event)                               //шоб листать текст и главу думайте сами.
 {
     if (event->button() == Qt::LeftButton) {
         currentDialogueIndex++;
@@ -164,32 +169,29 @@ void NovellaGame::mousePressEvent(QMouseEvent *event)
     QWidget::mousePressEvent(event);
 }
 
-void NovellaGame::setBackgroundImage(const QString &imageName)
+void NovellaGame::setBackgroundImage(const QString &imageName)                      //адская дрочильня 1
 {
     QString imagePath = QString(":/common/background/novellabg/%1.jpg").arg(imageName);
     backgroundWidget->setBackgroundImage(imagePath);
 
-    // Убеждаемся, что виджет фона занимает весь экран
     backgroundWidget->setGeometry(this->rect());
-    backgroundWidget->lower();  // Виджет фона должен быть под другими элементами
+    backgroundWidget->lower();
 
-    // Добавляем отладочные сообщения для проверки геометрии
     qDebug() << "Background widget geometry set to:" << backgroundWidget->geometry();
 }
 
-void NovellaGame::resizeEvent(QResizeEvent *event)
+void NovellaGame::resizeEvent(QResizeEvent *event)                                  //адская дрочильня 1.2
 {
     QWidget::resizeEvent(event);
 
-    // Перемещаем и изменяем размер виджета фона при изменении размера окна
     if (backgroundWidget) {
         backgroundWidget->setGeometry(this->rect());
-        backgroundWidget->lower();  // Ставим виджет под другие элементы интерфейса
+        backgroundWidget->lower();
         qDebug() << "Resized background widget to:" << backgroundWidget->geometry();
     }
 }
 
-QString NovellaGame::extractValue(const QString &line)
+QString NovellaGame::extractValue(const QString &line)                              //адская дрочильня 1.3
 {
     int start = line.indexOf('"') + 1;
     int end = line.lastIndexOf('"');
@@ -199,7 +201,7 @@ QString NovellaGame::extractValue(const QString &line)
     return QString();
 }
 
-void NovellaGame::setCharacters(const QString &leftCharacter, const QString &rightCharacter)
+void NovellaGame::setCharacters(const QString &leftCharacter, const QString &rightCharacter)    //хотел сделать МОЖЕМ ПОВТОРИТЬ (так-же как с бекграундами) а в итоге говно получилось.
 {
     QString leftSpritePath = getCharacterSprite(leftCharacter);
     QString rightSpritePath = getCharacterSprite(rightCharacter);
@@ -215,5 +217,5 @@ void NovellaGame::addCharacterSprite(const QString &characterName, const QString
 
 QString NovellaGame::getCharacterSprite(const QString &characterName) const
 {
-    return characterSprites.value(characterName, "character_null"); // Возвращаем "character_null", если персонаж не найден
+    return characterSprites.value(characterName, "character_null");
 }

@@ -14,4 +14,4 @@ private:
     QString filePath;
 };
 
-#endif // SETTINGSMANAGER_H
+#endif

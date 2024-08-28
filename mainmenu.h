@@ -33,4 +33,4 @@ private:
     Ui::MainMenu *ui;
 };
 
-#endif // MAINMENU_H
+#endif

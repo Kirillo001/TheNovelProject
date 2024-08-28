@@ -33,4 +33,4 @@ private:
     Ui::GameSettings *ui;
 };
 
-#endif // GAMESETTINGS_H
+#endif

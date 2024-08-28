@@ -25,4 +25,4 @@ private:
     Ui::LoadMenu *ui;
 };
 
-#endif // LOADMENU_H
+#endif

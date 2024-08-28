@@ -26,4 +26,4 @@ private:
     Ui::ChapterSelection *ui;
 };
 
-#endif // CHAPTERSELECTION_H
+#endif

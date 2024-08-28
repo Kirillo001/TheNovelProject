@@ -17,7 +17,7 @@ struct Dialogue {
     QString effect;
     QString samecharacterimgxyz;
     int music;
-    QString background;  // Добавляем поле для фона
+    QString background;
 };
 
 
@@ -52,4 +52,4 @@ private:
     QMap<QString, QString> characterSprites;
 };
 
-#endif // NOVELLAGAME_H
+#endif
